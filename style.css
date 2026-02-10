@@ -1,0 +1,247 @@
+/* ================= MATERIAL DESIGN VARIABLES ================= */
+:root {
+  --bg: #ffffff;
+  --surface: #f8f9fa;
+  --text: #202124;
+  --muted: #5f6368;
+  --border: #dadce0;
+
+  --accent: #1a73e8;
+
+  /* Header height (for anchor offset) */
+  --header-height: 88px;
+
+  /* Material spacing scale (8px system) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+}
+
+/* ================= BASE ================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  transition: background 300ms ease, color 300ms ease;
+}
+
+/* Links */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ================= LAYOUT ================= */
+.container {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: var(--space-4) var(--space-2);
+}
+
+/* 🔥 FIXED SECTION OFFSET */
+.section {
+  margin-top: var(--space-5);
+  scroll-margin-top: var(--header-height);
+}
+
+.section h2 {
+  margin-bottom: var(--space-2);
+}
+
+/* ================= HEADER ================= */
+.header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.nav-links a {
+  position: relative;
+  padding-block: var(--space-1);
+}
+
+/* Material underline */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  transition: width 200ms ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after {
+  width: 100%;
+}
+
+/* ================= HERO ================= */
+.hero {
+  padding-top: calc(var(--space-5) + var(--space-3));
+  padding-bottom: var(--space-5);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  margin-bottom: var(--space-2);
+}
+
+.hero p {
+  max-width: 680px;
+  color: var(--muted);
+  margin-bottom: var(--space-3);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+/* ================= SKILLS ================= */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.skills-grid span {
+  background: var(--surface);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* ================= PROJECTS ================= */
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.project-card .tech {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: var(--space-1) 0;
+}
+
+/* ================= CONTACT ================= */
+#contact p {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-bottom: var(--space-1);
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: var(--space-3);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ================= MOTION (MATERIAL) ================= */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: materialFade 420ms cubic-bezier(.2,0,0,1) both;
+  }
+}
+
+@keyframes materialFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= HAMBURGER ================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: all 0.3s ease;
+}
+
+/* ================= MOBILE NAV ================= */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    right: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
